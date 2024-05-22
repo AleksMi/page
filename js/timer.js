@@ -1,8 +1,8 @@
 $(function(){
     function timer(settings){
         var config = {
-            endDate: '2030-01-20 03:00',
-            timeZone: 'Europe/Dublin',
+            endDate: '2024-08-16 03:00',
+            timeZone: 'Europe/Moscow',
             hours: $('#hours'),
             minutes: $('#minutes'),
             seconds: $('#seconds'),
