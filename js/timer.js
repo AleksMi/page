@@ -1,7 +1,7 @@
 $(function(){
     function timer(settings){
         var config = {
-            endDate: '2024-08-16 03:00',
+            endDate: '2024-05-25 03:00',
             timeZone: 'Europe/Moscow',
             hours: $('#hours'),
             minutes: $('#minutes'),
