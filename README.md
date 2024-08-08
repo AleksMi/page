@@ -1,3 +1,3 @@
 # test
 тестовая страница
-https://aleksmi.github.io/test/
+https://aleksmi.github.io/page/
