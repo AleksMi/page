@@ -1,145 +1,918 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Инженер Control4 – Портфолио</title>
-  <style>
-    * {
-      margin: 0; padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    body {
-      background: #121212;
-      color: #fff;
-      line-height: 1.6;
-    }
-
-    header {
-      padding: 60px 20px;
-      background: linear-gradient(135deg, #ff7b00, #cc4e00);
-      text-align: center;
-      animation: fadeIn 1.5s ease-in-out;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-
-    section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-      animation: fadeInUp 1s ease forwards;
-    }
-
-    .services, .portfolio {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 30px;
-    }
-
-    .card {
-      background: #1e1e1e;
-      padding: 20px;
-      border-radius: 10px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(255, 123, 0, 0.4);
-    }
-
-    footer {
-      background: #1a1a1a;
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-
-    a {
-      color: #ff7b00;
-      text-decoration: none;
-    }
-
-    @keyframes fadeIn {
-      0% {opacity: 0;}
-      100% {opacity: 1;}
-    }
-
-    @keyframes fadeInUp {
-      0% {opacity: 0; transform: translateY(20px);}
-      100% {opacity: 1; transform: translateY(0);}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инженер систем автоматизации Control4 и KNX</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#3b82f6',secondary:'#64748b'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .portfolio-item {
+            overflow: hidden;
+        }
+        .portfolio-item img {
+            transition: transform 0.5s ease;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        .custom-checkbox {
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+        }
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border: 2px solid #e5e7eb;
+            border-radius: 4px;
+        }
+        .custom-checkbox:hover input ~ .checkmark {
+            border-color: #3b82f6;
+        }
+        .custom-checkbox input:checked ~ .checkmark {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+        }
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .custom-checkbox input:checked ~ .checkmark:after {
+            display: block;
+        }
+        .custom-checkbox .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .custom-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .custom-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e5e7eb;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #3b82f6;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .testimonial-slider {
+            overflow-x: hidden;
+            position: relative;
+        }
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .testimonial-item {
+            flex: 0 0 100%;
+        }
+        .scroll-down {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="bg-white">
+    <!-- Навигация -->
+    <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-['Pacifico'] text-primary">logo</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-700 hover:text-primary transition-colors">Обо мне</a>
+                <a href="#services" class="text-gray-700 hover:text-primary transition-colors">Услуги</a>
+                <a href="#portfolio" class="text-gray-700 hover:text-primary transition-colors">Портфолио</a>
+                <a href="#advantages" class="text-gray-700 hover:text-primary transition-colors">Преимущества</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary transition-colors">Контакты</a>
+            </div>
+            <button class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
+                <i class="ri-menu-line ri-lg"></i>
+            </button>
+        </div>
+    </nav>
 
-  <header>
-    <h1>Иван Петров</h1>
-    <p>Инженер по умному дому Control4</p>
-  </header>
+    <!-- Hero Section -->
+    <section class="hero-section h-screen flex items-center" style="background-image: url('https://readdy.ai/api/search-image?query=modern%20smart%20home%20interior%20with%20automation%20system%2C%20showing%20control%20panels%20and%20integrated%20technology%2C%20soft%20lighting%2C%20luxurious%20design%2C%20high-end%20finishes%2C%20clean%20and%20minimalist%20aesthetic%2C%20evening%20atmosphere%20with%20city%20views%20through%20large%20windows&width=1920&height=1080&seq=1&orientation=landscape'); background-size: cover; background-position: center;">
+        <div class="container mx-auto px-6 hero-content w-full">
+            <div class="max-w-3xl mx-auto text-center text-white">
+                <h1 class="text-5xl md:text-6xl font-bold mb-4">Алексей Петров</h1>
+                <h2 class="text-2xl md:text-3xl font-medium mb-8">Инженер систем автоматизации Control4 и KNX</h2>
+                <p class="text-xl mb-10">Создаю интеллектуальные дома с интуитивным управлением и безупречной надежностью</p>
+                <a href="#contact" class="inline-block bg-primary text-white px-8 py-3 rounded-button font-medium hover:bg-blue-600 transition-colors whitespace-nowrap">Связаться со мной</a>
+                <div class="mt-16 scroll-down">
+                    <a href="#about" class="inline-block">
+                        <div class="w-12 h-12 flex items-center justify-center rounded-full border-2 border-white">
+                            <i class="ri-arrow-down-line ri-lg"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section>
-    <h2>Обо мне</h2>
-    <p>
-      Сертифицированный инженер с опытом работы в области автоматизации Control4 более 7 лет. Реализую проекты под ключ – от проектирования до настройки и поддержки.
-    </p>
-  </section>
+    <!-- О специалисте -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/3">
+                    <div class="rounded-lg overflow-hidden shadow-lg">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20male%20engineer%20in%20his%2030s%20wearing%20smart%20casual%20attire%2C%20confident%20posture%2C%20in%20a%20modern%20smart%20home%20environment%20with%20control%20panels%20visible%20in%20background%2C%20warm%20lighting%2C%20professional%20portrait%20with%20shallow%20depth%20of%20field&width=600&height=800&seq=2&orientation=portrait" alt="Алексей Петров" class="w-full h-auto object-cover object-top">
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <h2 class="text-3xl font-bold mb-6">Обо мне</h2>
+                    <p class="text-gray-700 mb-6">Я сертифицированный инженер с более чем 10-летним опытом в проектировании и внедрении систем домашней автоматизации на базе Control4 и KNX. Моя специализация — создание интуитивно понятных, надежных и энергоэффективных решений для жилых и коммерческих объектов.</p>
+                    <p class="text-gray-700 mb-8">Начав карьеру в 2013 году, я реализовал более 120 проектов различной сложности — от небольших квартир до элитных загородных резиденций и бизнес-центров. Мой подход основан на тщательном анализе потребностей клиента и создании индивидуальных решений, которые гармонично вписываются в архитектуру помещения.</p>
+                    
+                    <h3 class="text-xl font-semibold mb-4">Сертификаты и достижения</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-medal-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Control4 Certified Professional</h4>
+                                <p class="text-sm text-gray-600">Уровень: Platinum</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-medal-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">KNX Partner</h4>
+                                <p class="text-sm text-gray-600">Сертифицированный специалист</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-award-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Лучший проект года 2023</h4>
+                                <p class="text-sm text-gray-600">Национальная премия "Умный дом"</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-building-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Авторизованный инсталлятор</h4>
+                                <p class="text-sm text-gray-600">Lutron, Sonos, RTI</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold mb-4">Ключевые навыки</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-blue-100 text-primary rounded-full text-sm">Проектирование систем</span>
+                        <span class="px-4 py-2 bg-blue-100 text-primary rounded-full text-sm">Программирование Control4</span>
+                        <span class="px-4 py-2 bg-blue-100 text-primary rounded-full text-sm">KNX интеграция</span>
+                        <span class="px-4 py-2 bg-blue-100 text-primary rounded-full text-sm">Умное освещение</span>
+                        <span class="px-4 py-2 bg-blue-100 text-primary rounded-full text-sm">Мультирум аудио/видео</span>
+                        <span class="px-4 py-2 bg-blue-100 text-primary rounded-full text-sm">Системы безопасности</span>
+                        <span class="px-4 py-2 bg-blue-100 text-primary rounded-full text-sm">Энергоэффективность</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section>
-    <h2>Услуги</h2>
-    <div class="services">
-      <div class="card">
-        <h3>Проектирование систем</h3>
-        <p>Создание индивидуального проекта системы Control4 для дома или офиса.</p>
-      </div>
-      <div class="card">
-        <h3>Интеграция мультимедиа</h3>
-        <p>Настройка мультирум аудио, видео, домашнего кинотеатра и сцен.</p>
-      </div>
-      <div class="card">
-        <h3>Поддержка и обновления</h3>
-        <p>Обслуживание, удалённая поддержка, обновления прошивок и логики.</p>
-      </div>
+    <!-- Услуги -->
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Мои услуги</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Предлагаю полный спектр услуг по проектированию, установке и обслуживанию систем домашней автоматизации на базе Control4 и KNX</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Услуга 1 -->
+                <div class="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300">
+                    <div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-6 mx-auto">
+                        <i class="ri-lightbulb-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">Умное освещение</h3>
+                    <p class="text-gray-600 text-center">Проектирование и настройка интеллектуальных систем освещения с автоматизацией, диммированием и созданием световых сценариев для Control4 и KNX.</p>
+                </div>
+                
+                <!-- Услуга 2 -->
+                <div class="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300">
+                    <div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-6 mx-auto">
+                        <i class="ri-home-gear-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">Климат-контроль</h3>
+                    <p class="text-gray-600 text-center">Интеграция систем отопления, вентиляции и кондиционирования в единую экосистему с возможностью удаленного управления и автоматизации.</p>
+                </div>
+                
+                <!-- Услуга 3 -->
+                <div class="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300">
+                    <div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-6 mx-auto">
+                        <i class="ri-shield-check-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">Системы безопасности</h3>
+                    <p class="text-gray-600 text-center">Интеграция видеонаблюдения, охранной сигнализации, контроля доступа и других систем безопасности в единую платформу.</p>
+                </div>
+                
+                <!-- Услуга 4 -->
+                <div class="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300">
+                    <div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-6 mx-auto">
+                        <i class="ri-music-2-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">Мультирум аудио/видео</h3>
+                    <p class="text-gray-600 text-center">Создание систем распределения аудио и видео контента по всему дому с синхронизацией и централизованным управлением.</p>
+                </div>
+                
+                <!-- Услуга 5 -->
+                <div class="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300">
+                    <div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-6 mx-auto">
+                        <i class="ri-remote-control-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">Программирование Control4</h3>
+                    <p class="text-gray-600 text-center">Профессиональное программирование контроллеров Control4, создание пользовательских интерфейсов и сценариев автоматизации.</p>
+                </div>
+                
+                <!-- Услуга 6 -->
+                <div class="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300">
+                    <div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-6 mx-auto">
+                        <i class="ri-database-2-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">KNX интеграция</h3>
+                    <p class="text-gray-600 text-center">Проектирование, программирование и интеграция устройств на базе стандарта KNX для создания надежных систем автоматизации.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="#contact" class="inline-block bg-primary text-white px-8 py-3 rounded-button font-medium hover:bg-blue-600 transition-colors whitespace-nowrap">Обсудить проект</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Портфолио -->
+    <section id="portfolio" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-4">Портфолио проектов</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Ознакомьтесь с моими лучшими работами в области домашней автоматизации</p>
+            </div>
+            
+            <div class="flex justify-center mb-10">
+                <div class="inline-flex p-1 bg-gray-200 rounded-full">
+                    <button class="portfolio-filter-btn active px-6 py-2 rounded-full bg-primary text-white whitespace-nowrap" data-filter="all">Все проекты</button>
+                    <button class="portfolio-filter-btn px-6 py-2 rounded-full text-gray-700 whitespace-nowrap" data-filter="control4">Control4</button>
+                    <button class="portfolio-filter-btn px-6 py-2 rounded-full text-gray-700 whitespace-nowrap" data-filter="knx">KNX</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Проект 1 -->
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-md bg-white" data-category="control4">
+                    <div class="relative h-64">
+                        <img src="https://readdy.ai/api/search-image?query=luxury%20living%20room%20with%20smart%20home%20control%20panel%20on%20wall%2C%20modern%20design%2C%20integrated%20lighting%20system%2C%20evening%20atmosphere%2C%20high-end%20finishes%2C%20clean%20and%20minimalist%20aesthetic&width=600&height=400&seq=3&orientation=landscape" alt="Умный дом в ЖК Парк Авеню" class="w-full h-full object-cover object-top">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs">Control4</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Умный дом в ЖК Парк Авеню</h3>
+                        <p class="text-gray-600 mb-4">Полная автоматизация пентхауса площадью 210 м² с интеграцией освещения, климата, мультимедиа и безопасности на базе Control4.</p>
+                        <button class="text-primary font-medium flex items-center view-project-btn whitespace-nowrap">
+                            Подробнее
+                            <i class="ri-arrow-right-line ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Проект 2 -->
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-md bg-white" data-category="knx">
+                    <div class="relative h-64">
+                        <img src="https://readdy.ai/api/search-image?query=modern%20kitchen%20with%20smart%20home%20automation%2C%20KNX%20panel%20visible%2C%20integrated%20appliances%2C%20clean%20design%2C%20morning%20light%20through%20large%20windows%2C%20minimalist%20aesthetic&width=600&height=400&seq=4&orientation=landscape" alt="Загородный дом с KNX" class="w-full h-full object-cover object-top">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs">KNX</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Загородный дом с KNX</h3>
+                        <p class="text-gray-600 mb-4">Интеграция системы KNX в загородном доме 350 м² с умным освещением, климат-контролем и управлением шторами.</p>
+                        <button class="text-primary font-medium flex items-center view-project-btn whitespace-nowrap">
+                            Подробнее
+                            <i class="ri-arrow-right-line ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Проект 3 -->
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-md bg-white" data-category="control4">
+                    <div class="relative h-64">
+                        <img src="https://readdy.ai/api/search-image?query=home%20theater%20with%20integrated%20control4%20system%2C%20luxury%20seating%2C%20ambient%20lighting%2C%20large%20projection%20screen%2C%20acoustic%20panels%2C%20evening%20atmosphere&width=600&height=400&seq=5&orientation=landscape" alt="Домашний кинотеатр Control4" class="w-full h-full object-cover object-top">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs">Control4</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Домашний кинотеатр Control4</h3>
+                        <p class="text-gray-600 mb-4">Проектирование и установка домашнего кинотеатра с интеграцией Control4 для управления аудио/видео, освещением и шторами.</p>
+                        <button class="text-primary font-medium flex items-center view-project-btn whitespace-nowrap">
+                            Подробнее
+                            <i class="ri-arrow-right-line ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Проект 4 -->
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-md bg-white" data-category="knx">
+                    <div class="relative h-64">
+                        <img src="https://readdy.ai/api/search-image?query=modern%20office%20space%20with%20KNX%20automation%20system%2C%20meeting%20room%20with%20integrated%20controls%2C%20glass%20walls%2C%20business%20environment%2C%20clean%20design&width=600&height=400&seq=6&orientation=landscape" alt="Офисное пространство на KNX" class="w-full h-full object-cover object-top">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs">KNX</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Офисное пространство на KNX</h3>
+                        <p class="text-gray-600 mb-4">Автоматизация офиса площадью 500 м² с использованием KNX для управления освещением, климатом и энергоэффективностью.</p>
+                        <button class="text-primary font-medium flex items-center view-project-btn whitespace-nowrap">
+                            Подробнее
+                            <i class="ri-arrow-right-line ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Проект 5 -->
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-md bg-white" data-category="control4">
+                    <div class="relative h-64">
+                        <img src="https://readdy.ai/api/search-image?query=smart%20apartment%20with%20control4%20touchscreen%20panel%2C%20modern%20living%20space%2C%20integrated%20technology%2C%20evening%20city%20view%20through%20windows%2C%20luxury%20finishes&width=600&height=400&seq=7&orientation=landscape" alt="Апартаменты с Control4" class="w-full h-full object-cover object-top">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs">Control4</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Апартаменты с Control4</h3>
+                        <p class="text-gray-600 mb-4">Комплексная автоматизация апартаментов 120 м² с использованием Control4 и интеграцией с системой безопасности.</p>
+                        <button class="text-primary font-medium flex items-center view-project-btn whitespace-nowrap">
+                            Подробнее
+                            <i class="ri-arrow-right-line ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Проект 6 -->
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-md bg-white" data-category="knx">
+                    <div class="relative h-64">
+                        <img src="https://readdy.ai/api/search-image?query=smart%20home%20exterior%20with%20automated%20gates%2C%20lighting%20and%20security%20system%2C%20luxury%20villa%2C%20evening%20atmosphere%2C%20KNX%20technology%20visible&width=600&height=400&seq=8&orientation=landscape" alt="Система безопасности на KNX" class="w-full h-full object-cover object-top">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs">KNX</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Система безопасности на KNX</h3>
+                        <p class="text-gray-600 mb-4">Интеграция системы безопасности загородного дома с использованием KNX для управления доступом, видеонаблюдением и сигнализацией.</p>
+                        <button class="text-primary font-medium flex items-center view-project-btn whitespace-nowrap">
+                            Подробнее
+                            <i class="ri-arrow-right-line ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section id="advantages" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Почему выбирают меня</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Мой подход к работе основан на профессионализме, внимании к деталям и стремлении превзойти ожидания клиентов</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">10+</div>
+                    <p class="text-gray-700">лет опыта работы</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">120+</div>
+                    <p class="text-gray-700">реализованных проектов</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">98%</div>
+                    <p class="text-gray-700">довольных клиентов</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">5</div>
+                    <p class="text-gray-700">профессиональных наград</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4">Мои преимущества</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-3 mt-0.5">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p class="text-gray-700">Сертифицированный специалист по Control4 и KNX с обширным опытом работы</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-3 mt-0.5">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p class="text-gray-700">Индивидуальный подход к каждому проекту с учетом всех пожеланий клиента</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-3 mt-0.5">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p class="text-gray-700">Комплексные решения "под ключ" от проектирования до обслуживания</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-3 mt-0.5">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p class="text-gray-700">Использование только сертифицированного оборудования с гарантией</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-3 mt-0.5">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p class="text-gray-700">Техническая поддержка и сервисное обслуживание 24/7</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-6">Отзывы клиентов</h3>
+                    <div class="testimonial-slider">
+                        <div class="testimonial-track">
+                            <!-- Отзыв 1 -->
+                            <div class="testimonial-item p-4">
+                                <div class="flex items-center mb-4">
+                                    <div class="text-yellow-400 flex">
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 italic mb-4">"Алексей выполнил проект автоматизации нашего дома на базе Control4. Работа выполнена на высочайшем уровне, все наши пожелания были учтены. Особенно впечатляет интеграция всех систем в единое целое и простота управления."</p>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 mr-3">
+                                        <i class="ri-user-line ri-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium">Игорь Соколов</h4>
+                                        <p class="text-sm text-gray-600">Владелец загородного дома</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Отзыв 2 -->
+                            <div class="testimonial-item p-4">
+                                <div class="flex items-center mb-4">
+                                    <div class="text-yellow-400 flex">
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 italic mb-4">"Мы обратились к Алексею для автоматизации нашего офиса на базе KNX. Результат превзошел все ожидания - система работает безупречно, а энергопотребление снизилось на 30%. Рекомендую как профессионала высочайшего класса!"</p>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 mr-3">
+                                        <i class="ri-user-line ri-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium">Елена Васильева</h4>
+                                        <p class="text-sm text-gray-600">Директор компании "ТехноСтрой"</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Отзыв 3 -->
+                            <div class="testimonial-item p-4">
+                                <div class="flex items-center mb-4">
+                                    <div class="text-yellow-400 flex">
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 italic mb-4">"Алексей модернизировал нашу существующую систему автоматизации, интегрировав новые устройства и добавив функциональность. Все работы выполнены в срок и с безупречным качеством. Отдельное спасибо за терпеливое обучение пользованию системой."</p>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 mr-3">
+                                        <i class="ri-user-line ri-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium">Дмитрий Новиков</h4>
+                                        <p class="text-sm text-gray-600">Владелец апартаментов</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-6">
+                        <button class="testimonial-prev w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 mr-2">
+                            <i class="ri-arrow-left-s-line"></i>
+                        </button>
+                        <button class="testimonial-next w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 text-gray-600">
+                            <i class="ri-arrow-right-s-line"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контактная форма -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Связаться со мной</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Готов обсудить ваш проект и предложить оптимальное решение для автоматизации вашего дома или офиса</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <form class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Ваше имя</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Введите ваше имя">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Телефон</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="+7 (___) ___-__-__">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="your@email.com">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="project" class="block text-gray-700 font-medium mb-2">Тип проекта</label>
+                            <div class="relative">
+                                <select id="project" class="w-full px-4 py-3 border border-gray-300 rounded appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent pr-8">
+                                    <option value="" disabled selected>Выберите тип проекта</option>
+                                    <option value="control4">Control4</option>
+                                    <option value="knx">KNX</option>
+                                    <option value="combined">Комбинированный</option>
+                                    <option value="other">Другое</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-700">
+                                    <i class="ri-arrow-down-s-line"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Описание проекта</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Опишите ваш проект и пожелания"></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="custom-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="ml-2 text-gray-700">Я согласен на обработку персональных данных</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary text-white py-3 px-6 rounded-button font-medium hover:bg-blue-600 transition-colors whitespace-nowrap">Отправить заявку</button>
+                    </form>
+                </div>
+                
+                <div>
+                    <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                        <h3 class="text-xl font-semibold mb-6">Контактная информация</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center text-primary mr-4">
+                                    <i class="ri-phone-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">Телефон</h4>
+                                    <p class="text-gray-600">+7 (926) 866-35-39</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center text-primary mr-4">
+                                    <i class="ri-mail-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">Email</h4>
+                                    <p class="text-gray-600">antistatus@mail.ru</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center text-primary mr-4">
+                                    <i class="ri-time-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">Время работы</h4>
+                                    <p class="text-gray-600">Пн-Пт: 10:00 - 18:00<br>Сб-Вс: выходной</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center text-primary mr-4">
+                                    <i class="ri-map-pin-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">Регион работы</h4>
+                                    <p class="text-gray-600">Москва и Московская область</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <h4 class="font-medium text-gray-700 mb-3">Социальные сети</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://t.me/antistatus" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                                    <i class="ri-telegram-line"></i>
+                                </a>
+                                <a href="https://wa.me/79268663539" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                                    <i class="ri-whatsapp-line"></i>
+                                </a>
+                                <a href="https://www.instagram.com/antistatus?igsh=MXdxd3Rsc3Z0NGR4bA==" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                                    <i class="ri-instagram-line"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                                    <i class="ri-youtube-line"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden h-64">
+                        <div class="h-full w-full" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">logo</a>
+                    <p class="text-gray-400 mb-6">Профессиональные решения для автоматизации домов и офисов на базе Control4 и KNX.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://t.me/antistatus" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 text-gray-400 hover:bg-primary hover:text-white transition-colors">
+                            <i class="ri-telegram-line"></i>
+                        </a>
+                        <a href="https://wa.me/79268663539" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 text-gray-400 hover:bg-primary hover:text-white transition-colors">
+                            <i class="ri-whatsapp-line"></i>
+                        </a>
+                        <a href="https://www.instagram.com/antistatus?igsh=MXdxd3Rsc3Z0NGR4bA==" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 text-gray-400 hover:bg-primary hover:text-white transition-colors">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Навигация</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Главная</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">Обо мне</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Услуги</a></li>
+                        <li><a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">Портфолио</a></li>
+                        <li><a href="#advantages" class="text-gray-400 hover:text-white transition-colors">Преимущества</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Контакты</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3 mt-0.5">
+                                <i class="ri-phone-line"></i>
+                            </div>
+                            <span class="text-gray-400">+7 (926) 866-35-39</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3 mt-0.5">
+                                <i class="ri-mail-line"></i>
+                            </div>
+                            <span class="text-gray-400">antistatus@mail.ru</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3 mt-0.5">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <span class="text-gray-400">Москва и Московская область</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 Алексей Петров. Все права защищены.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 text-sm hover:text-white transition-colors">Политика конфиденциальности</a>
+                    <a href="#" class="text-gray-500 text-sm hover:text-white transition-colors">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Кнопка быстрой связи -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <div class="relative group">
+            <button class="w-16 h-16 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-blue-600 transition-colors">
+                <i class="ri-chat-1-line ri-xl"></i>
+            </button>
+            <div class="absolute bottom-full right-0 mb-3 hidden group-hover:block">
+                <div class="bg-white rounded-lg shadow-lg p-3 flex flex-col space-y-2 w-48">
+                    <a href="https://wa.me/79268663539" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 transition-colors">
+                        <i class="ri-whatsapp-line ri-lg text-green-500 mr-3"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="https://t.me/antistatus" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 transition-colors">
+                        <i class="ri-telegram-line ri-lg text-blue-500 mr-3"></i>
+                        <span>Telegram</span>
+                    </a>
+                    <a href="tel:+79268663539" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 transition-colors">
+                        <i class="ri-phone-line ri-lg text-gray-700 mr-3"></i>
+                        <span>Позвонить</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <section>
-    <h2>Проекты</h2>
-    <div class="portfolio">
-      <div class="card">
-        <h3>Умный дом в коттедже</h3>
-        <p>Полная интеграция Control4, охрана, свет, климат и аудио.</p>
-      </div>
-      <div class="card">
-        <h3>Офис премиум-класса</h3>
-        <p>Автоматизация конференц-залов, световых сценариев и медиасистем.</p>
-      </div>
-    </div>
-  </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Плавная прокрутка
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
 
-  <section>
-    <h2>Контакты</h2>
-    <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
-    <p>Телефон: +7 (999) 123-45-67</p>
-    <p>Instagram: <a href="#">@yourprofile</a></p>
-  </section>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Фильтрация портфолио
+            const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Удаляем активный класс со всех кнопок
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-primary', 'text-white');
+                        btn.classList.add('text-gray-700');
+                    });
+                    
+                    // Добавляем активный класс к нажатой кнопке
+                    button.classList.add('active', 'bg-primary', 'text-white');
+                    button.classList.remove('text-gray-700');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
 
-  <footer>
-    &copy; 2025 Иван Петров – Инженер Control4. Все права защищены.
-  </footer>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Слайдер отзывов
+            const track = document.querySelector('.testimonial-track');
+            const items = document.querySelectorAll('.testimonial-item');
+            const prevButton = document.querySelector('.testimonial-prev');
+            const nextButton = document.querySelector('.testimonial-next');
+            
+            let currentIndex = 0;
+            const itemWidth = 100; // в процентах
+            
+            function updateSlider() {
+                track.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+            }
+            
+            prevButton.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlider();
+                }
+            });
+            
+            nextButton.addEventListener('click', () => {
+                if (currentIndex < items.length - 1) {
+                    currentIndex++;
+                    updateSlider();
+                }
+            });
+        });
 
+        document.addEventListener('DOMContentLoaded', function() {
+            // Модальное окно для просмотра проектов
+            const projectButtons = document.querySelectorAll('.view-project-btn');
+            
+            projectButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const projectTitle = button.closest('.portfolio-item').querySelector('h3').textContent;
+                    alert(`Просмотр проекта: ${projectTitle}\nВ полной версии здесь откроется модальное окно с детальной информацией о проекте.`);
+                });
+            });
+        });
+    </script>
 </body>
-</html>
+                      </html>
