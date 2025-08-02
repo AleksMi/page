@@ -156,12 +156,57 @@
             }
         }
     </style>
+	<style>
+		/* Стили модального окна */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .portfolio-item {
+            margin-bottom: 20px;
+        }
+	</style>
 </head>
 <body class="bg-white">
     <!-- Навигация -->
     <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-['Pacifico'] text-primary">Antistatus</a>
+            <a href="https://github.com/AleksMi" class="text-2xl font-['Pacifico'] text-primary">antistatus</a>
             <div class="hidden md:flex space-x-8">
                 <a href="#about" class="text-gray-700 hover:text-primary transition-colors">Обо мне</a>
                 <a href="#services" class="text-gray-700 hover:text-primary transition-colors">Услуги</a>
@@ -243,7 +288,7 @@
                             </div>
                             <div>
                                 <h4 class="font-medium">Авторизованный инсталлятор</h4>
-                                <p class="text-sm text-gray-600">Control4, Sonos, KNX</p>
+                                <p class="text-sm text-gray-600">Lutron, Sonos, RTI</p>
                             </div>
                         </div>
                     </div>
@@ -358,7 +403,12 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">Умный дом в ЖК Парк Авеню</h3>
-                        <p class="text-gray-600 mb-4">Полная автоматизация пентхауса площадью 210 м² с интеграцией освещения, климата, мультимедиа и безопасности на базе Control4.</p>
+                        <!-- Описание для модального окна -->
+                        <p class="project-description hidden">
+                            Этот проект демонстрирует полную интеграцию освещения, климат-контроля, аудио/видео и системы безопасности
+                            с помощью платформы Control4. Система обеспечивает централизованное управление через сенсорные панели,
+                            мобильное приложение и голосовые команды.
+                        </p>
                         <button class="text-primary font-medium flex items-center view-project-btn whitespace-nowrap">
                             Подробнее
                             <i class="ri-arrow-right-line ml-1"></i>
@@ -374,7 +424,7 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">Загородный дом с KNX</h3>
-                        <p class="text-gray-600 mb-4">Интеграция системы KNX в загородном доме 350 м² с умным освещением, климат-контролем и управлением шторами.</p>
+                        <p class="project-description hidden">Интеграция системы KNX в загородном доме 350 м² с умным освещением, климат-контролем и управлением шторами.</p>
                         <button class="text-primary font-medium flex items-center view-project-btn whitespace-nowrap">
                             Подробнее
                             <i class="ri-arrow-right-line ml-1"></i>
@@ -390,7 +440,7 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">Домашний кинотеатр Control4</h3>
-                        <p class="text-gray-600 mb-4">Проектирование и установка домашнего кинотеатра с интеграцией Control4 для управления аудио/видео, освещением и шторами.</p>
+                        <p class="project-description hidden">Проектирование и установка домашнего кинотеатра с интеграцией Control4 для управления аудио/видео, освещением и шторами.</p>
                         <button class="text-primary font-medium flex items-center view-project-btn whitespace-nowrap">
                             Подробнее
                             <i class="ri-arrow-right-line ml-1"></i>
@@ -406,7 +456,7 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">Офисное пространство на KNX</h3>
-                        <p class="text-gray-600 mb-4">Автоматизация офиса площадью 500 м² с использованием KNX для управления освещением, климатом и энергоэффективностью.</p>
+                        <p class="project-description hidden">Автоматизация офиса площадью 500 м² с использованием KNX для управления освещением, климатом и энергоэффективностью.</p>
                         <button class="text-primary font-medium flex items-center view-project-btn whitespace-nowrap">
                             Подробнее
                             <i class="ri-arrow-right-line ml-1"></i>
@@ -422,7 +472,7 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">Апартаменты с Control4</h3>
-                        <p class="text-gray-600 mb-4">Комплексная автоматизация апартаментов 120 м² с использованием Control4 и интеграцией с системой безопасности.</p>
+                        <p class="project-description hidden">Комплексная автоматизация апартаментов 120 м² с использованием Control4 и интеграцией с системой безопасности.</p>
                         <button class="text-primary font-medium flex items-center view-project-btn whitespace-nowrap">
                             Подробнее
                             <i class="ri-arrow-right-line ml-1"></i>
@@ -438,7 +488,7 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">Система безопасности на KNX</h3>
-                        <p class="text-gray-600 mb-4">Интеграция системы безопасности загородного дома с использованием KNX для управления доступом, видеонаблюдением и сигнализацией.</p>
+                        <p class="project-description hidden">Интеграция системы безопасности загородного дома с использованием KNX для управления доступом, видеонаблюдением и сигнализацией.</p>
                         <button class="text-primary font-medium flex items-center view-project-btn whitespace-nowrap">
                             Подробнее
                             <i class="ri-arrow-right-line ml-1"></i>
@@ -669,7 +719,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-medium text-gray-700">Телефон</h4>
-                                    <p class="text-gray-600">+7 (123) 456-78-90</p>
+                                    <p class="text-gray-600">+7 (495) 123-45-67</p>
                                 </div>
                             </div>
                             
@@ -679,7 +729,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-medium text-gray-700">Email</h4>
-                                    <p class="text-gray-600">mail@mail.ru</p>
+                                    <p class="text-gray-600">info@smarthouse-pro.ru</p>
                                 </div>
                             </div>
                             
@@ -689,7 +739,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-medium text-gray-700">Время работы</h4>
-                                    <p class="text-gray-600">Пн-Пт: 10:00 - 18:00<br>Сб-Вс: выходной</p>
+                                    <p class="text-gray-600">Пн-Пт: 9:00 - 19:00<br>Сб-Вс: выходной</p>
                                 </div>
                             </div>
                             
@@ -736,7 +786,7 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div>
-                    <a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">Antistatus</a>
+                    <a href="https://github.com/AleksMi" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">antistatus</a>
                     <p class="text-gray-400 mb-6">Профессиональные решения для автоматизации домов и офисов на базе Control4 и KNX.</p>
                     <div class="flex space-x-4">
                         <a href="https://t.me/telegram" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 text-gray-400 hover:bg-primary hover:text-white transition-colors">
@@ -759,7 +809,7 @@
                         <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Услуги</a></li>
                         <li><a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">Портфолио</a></li>
                         <li><a href="#advantages" class="text-gray-400 hover:text-white transition-colors">Преимущества</a></li>
-        html            <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Контакты</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Контакты</a></li>
                     </ul>
                 </div>
                 
@@ -770,13 +820,13 @@
                             <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3 mt-0.5">
                                 <i class="ri-phone-line"></i>
                             </div>
-                            <span class="text-gray-400">+7 (123) 456-78-90</span>
+                            <span class="text-gray-400">+7 (495) 123-45-67</span>
                         </li>
                         <li class="flex items-start">
                             <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3 mt-0.5">
                                 <i class="ri-mail-line"></i>
                             </div>
-                            <span class="text-gray-400">mail@mail.ru</span>
+                            <span class="text-gray-400">info@smarthouse-pro.ru</span>
                         </li>
                         <li class="flex items-start">
                             <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3 mt-0.5">
@@ -806,15 +856,15 @@
             </button>
             <div class="absolute bottom-full right-0 mb-3 hidden group-hover:block">
                 <div class="bg-white rounded-lg shadow-lg p-3 flex flex-col space-y-2 w-48">
-                    <a href="https://wa.me/71234567890" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 transition-colors">
+                    <a href="#" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 transition-colors">
                         <i class="ri-whatsapp-line ri-lg text-green-500 mr-3"></i>
                         <span>WhatsApp</span>
                     </a>
-                    <a href="https://t.me/telegram" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 transition-colors">
+                    <a href="#" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 transition-colors">
                         <i class="ri-telegram-line ri-lg text-blue-500 mr-3"></i>
                         <span>Telegram</span>
                     </a>
-                    <a href="tel:+71234567890" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 transition-colors">
+                    <a href="tel:+74951234567" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 transition-colors">
                         <i class="ri-phone-line ri-lg text-gray-700 mr-3"></i>
                         <span>Позвонить</span>
                     </a>
@@ -901,18 +951,47 @@
                 }
             });
         });
+    </script>
+	
+		<div id="projectModal" class="modal">
+			<div class="modal-content">
+				<span class="close-btn">&times;</span>
+				<h2 id="modalTitle">Заголовок проекта</h2>
+				<p id="modalDescription">Описание проекта.</p>
+			</div>
+		</div>
+			
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('projectModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const closeBtn = document.querySelector('.close-btn');
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // Модальное окно для просмотра проектов
             const projectButtons = document.querySelectorAll('.view-project-btn');
-            
+
             projectButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    const projectTitle = button.closest('.portfolio-item').querySelector('h3').textContent;
-                    alert(`Просмотр проекта: ${projectTitle}\nВ полной версии здесь откроется модальное окно с детальной информацией о проекте.`);
+                    const portfolioItem = button.closest('.portfolio-item');
+                    const title = portfolioItem.querySelector('h3').textContent;
+                    const description = portfolioItem.querySelector('.project-description')?.textContent || 'Описание отсутствует.';
+
+                    modalTitle.textContent = title;
+                    modalDescription.textContent = description;
+                    modal.style.display = 'flex';
                 });
             });
+
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
         });
-    </script>
+	</script>
 </body>
-                      </html>
+</html>
